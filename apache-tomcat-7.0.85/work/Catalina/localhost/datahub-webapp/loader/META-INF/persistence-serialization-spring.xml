@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="jsonSerializationService"
+		  class="com.hybris.kernel.persistence.serialization.impl.DefaultJsonSerializationService">
+		<property name="jsonObjectFactory" ref="jsonObjectFactory" />
+	</bean>
+
+	<bean id="jsonObjectFactory"
+		  class="com.hybris.kernel.persistence.serialization.impl.JsonObjectFactory">
+		<property name="transformer" ref="entityRecordTransformer" />
+	</bean>
+
+	<bean id="entityRecordTransformer"
+		  class="com.hybris.kernel.persistence.serialization.impl.DefaultEntityRecordTransformer">
+		<property name="typeSystem" ref="typeSystem" />
+		<property name="valueConverter" ref="valueConverter" />
+		<property name="tenantContextService" ref="tenantContextService" />
+		<property name="metadataProvider" ref="metadataProvider" />
+	</bean>
+
+	<bean id="tenantSerializationValueConverter"
+		  class="com.hybris.kernel.persistence.conversion.impl.TenantSerializationValueConverter">
+		<property name="conversionService" ref="conversionService" />
+		<property name="tenantContextService" ref="tenantContextService" />
+		<property name="valueTypeCreator" ref="valueTypeCreator" />
+	</bean>
+
+	<bean id="csvSerializationService"
+		  class="com.hybris.kernel.persistence.serialization.impl.DefaultCsvSerializationService">
+		<property name="valueConverter" ref="tenantSerializationValueConverter" />
+		<property name="conversionService" ref="conversionService" />
+		<property name="typeSystem" ref="typeSystem" />
+		<property name="tenantContextService" ref="tenantContextService" />
+		<property name="locales">
+			<bean class="org.springframework.util.StringUtils"
+				  factory-method="commaDelimitedListToSet">
+				<constructor-arg type="java.lang.String" value="${csv.locales}" />
+			</bean>
+		</property>
+		<property name="emptyStringActive" value="${csv.emptyStringDefault.active}" />
+		<property name="emptyStringValue" value="${csv.emptyString}" />
+		<property name="valueTypeCreator" ref="valueTypeCreator" />
+		<property name="metadataProvider" ref="metadataProvider" />
+	</bean>
+
+	<bean id="multiCsvSerializationService"
+		  class="com.hybris.kernel.persistence.serialization.impl.DefaultMultiCsvSerializationService">
+		<property name="csvSerializationService" ref="csvSerializationService" />
+		<property name="typeSystem" ref="typeSystem" />
+	</bean>
+
+</beans>

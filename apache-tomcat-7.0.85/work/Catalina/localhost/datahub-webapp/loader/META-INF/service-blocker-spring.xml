@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<aop:config>
+		<aop:aspect ref="serviceBlocker">
+			<aop:around method="intercept"
+						pointcut="execution(* com.hybris.kernel.api.InitAware+.*(..))" />
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="serviceBlocker"
+		  class="com.hybris.kernel.persistence.initialization.uptodate.ServiceBlocker" lazy-init="false">
+		<property name="appVersionProvider" ref="appVersionProvider" />
+		<property name="initService" ref="initializationService" />
+		<property name="tenantContext" ref="tenantContextService" />
+	</bean>
+
+</beans>

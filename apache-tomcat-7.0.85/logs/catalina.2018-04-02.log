@@ -1,0 +1,16 @@
+Apr 02, 2018 5:33:38 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-10080"]
+Apr 02, 2018 5:33:38 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-10009"]
+Apr 02, 2018 5:33:38 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Apr 02, 2018 5:33:39 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@19cd7ecf]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@31bf73ed]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 02, 2018 5:33:39 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-10080"]
+Apr 02, 2018 5:33:39 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-10009"]
+Apr 02, 2018 5:33:39 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-10080"]
+Apr 02, 2018 5:33:39 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-10009"]

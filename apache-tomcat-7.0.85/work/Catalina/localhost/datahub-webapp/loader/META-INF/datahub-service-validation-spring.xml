@@ -1,0 +1,236 @@
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2016 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="abstractAttributeDataValidator" class="com.hybris.datahub.validation.metadata.AbstractAttributeDataValidator"
+		  abstract="true">
+		<property name="encryptionStrategy" ref="attributeEncryptionStrategy" />
+	</bean>
+
+	<bean name="canonicalAttributeDataValidator" class="com.hybris.datahub.validation.ValidationRules">
+		<property name="validators">
+			<list>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="name" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="itemType" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.metadata.CanonicalAttributeModelDataValidator"
+					  parent="abstractAttributeDataValidator">
+					<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean name="canonicalTransformationDataValidator"
+		  class="com.hybris.datahub.validation.metadata.CanonicalTransformationDataValidator"
+		  parent="abstractAttributeDataValidator">
+		<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+		<property name="encryptionStrategy" ref="attributeEncryptionStrategy" />
+	</bean>
+
+	<bean name="rawAttributeDataValidator" class="com.hybris.datahub.validation.ValidationRules">
+		<property name="validators">
+			<list>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="name" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="itemType" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.metadata.RawAttributeDataValidator"
+					  parent="abstractAttributeDataValidator">
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="rawItemTypeDataValidator" class="com.hybris.datahub.validation.metadata.RawItemTypeDataValidator">
+		<property name="rawItemMetadataService" ref="rawItemMetadataService" />
+	</bean>
+
+	<bean name="canonicalItemTypeDataValidator" class="com.hybris.datahub.validation.metadata.CanonicalItemTypeDataValidator">
+		<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+	</bean>
+
+	<bean name="targetSystemValidator" class="com.hybris.datahub.validation.ValidationRules">
+		<property name="validators">
+			<list>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="targetSystemName" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="targetSystemType" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.metadata.TargetSystemValidator">
+					<property name="adapterServiceRegistry" ref="adapterServiceRegistry" />
+					<property name="targetSystemService" ref="targetSystemService" />
+					<property name="encryptionStrategy" ref="attributeEncryptionStrategy" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="targetAttributeDataValidator" class="com.hybris.datahub.validation.ValidationRules">
+		<property name="validators">
+			<list>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="name" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="itemType" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.NotBlankValidator" />
+							<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.metadata.TargetAttributeDataValidator"
+					  parent="abstractAttributeDataValidator">
+					<property name="targetItemMetadataService" ref="targetItemMetadataService" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="targetItemTypeDataValidator" class="com.hybris.datahub.validation.metadata.TargetItemTypeDataValidator">
+		<property name="targetSystemService" ref="targetSystemService" />
+		<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+		<property name="targetItemMetadataService" ref="targetItemMetadataService" />
+	</bean>
+
+	<bean name="rawFragmentValidator" class="com.hybris.datahub.validation.item.RawFragmentValidator" />
+
+	<bean name="feedValidator" class="com.hybris.datahub.validation.ValidationRules">
+		<property name="validators">
+			<list>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="name" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.feed.FeedNotExistsValidator">
+								<property name="dataHubFeedService" ref="dataHubFeedService" />
+								<property name="validators">
+									<list>
+										<bean class="com.hybris.datahub.validation.NotBlankValidator">
+											<property name="message" value="Feed name cannot be blank" />
+										</bean>
+										<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+									</list>
+								</property>
+							</bean>
+						</list>
+					</property>
+				</bean>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="poolingStrategy" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.pool.PoolExistsValidator">
+								<property name="validators">
+									<list>
+										<bean class="com.hybris.datahub.validation.NotBlankValidator">
+											<property name="message" value="Pooling strategy cannot be blank" />
+										</bean>
+										<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+									</list>
+								</property>
+								<property name="poolingStrategyRegistry" ref="poolingStrategyServiceRegistry" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="poolValidator" class="com.hybris.datahub.validation.ValidationRules">
+		<property name="validators">
+			<list>
+				<bean class="com.hybris.datahub.validation.JavaBeanPropertyValidator">
+					<constructor-arg value="poolName" />
+					<property name="validators">
+						<list>
+							<bean class="com.hybris.datahub.validation.pool.PoolNotExistsValidator">
+								<property name="dataHubFeedService" ref="dataHubFeedService" />
+								<property name="validators">
+									<list>
+										<bean class="com.hybris.datahub.validation.NotBlankValidator">
+											<property name="message" value="Pool name cannot be blank" />
+										</bean>
+										<bean class="com.hybris.datahub.validation.PrintableContentValidator" />
+									</list>
+								</property>
+							</bean>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCanonicalItemValidator" alias="canonicalItemValidator" />
+	<bean id="defaultCanonicalItemValidator" class="com.hybris.datahub.validation.item.CanonicalItemValidator" />
+
+	<alias name="defaultTargetItemValidator" alias="targetItemValidator" />
+	<bean id="defaultTargetItemValidator" class="com.hybris.datahub.validation.item.TargetItemValidator" />
+
+
+</beans>

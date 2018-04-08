@@ -1,0 +1,220 @@
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2016 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<jpa:repositories base-package="com.hybris.datahub.domain.jpa.repositories,
+						com.hybris.datahub.runtime.domain.jpa.repositories" />
+
+	<bean id="abstractGenericJpaRepository" class="com.hybris.datahub.repository.jpa.impl.AbstractGenericJpaRepository"
+		  abstract="true">
+		<property name="beanFactory" ref="jpaBeanFactory" />
+	</bean>
+
+	<alias name="defaultDataHubPoolJpaRepository" alias="dataHubPoolRepository" />
+	<bean name="defaultDataHubPoolJpaRepository" class="com.hybris.datahub.repository.jpa.impl.DefaultDataHubPoolJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="dataHubPoolRepository" ref="dataHubPoolJpaRepository" />
+	</bean>
+
+	<alias name="defaultCanonicalItemMetadataJpaRepository" alias="canonicalItemMetadataRepository" />
+	<bean name="defaultCanonicalItemMetadataJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultCanonicalItemMetadataJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="canonicalItemMetadataJpaRepository" ref="canonicalItemMetadataJpaRepository" />
+	</bean>
+
+	<alias name="defaultCanonicalTransformationDefinitionJpaRepository"
+		   alias="canonicalTransformationDefinitionRepository" />
+	<bean name="defaultCanonicalTransformationDefinitionJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultCanonicalTransformationDefinitionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="canonicalAttributeDefinitionJpaRepository" ref="canonicalAttributeDefinitionJpaRepository" />
+	</bean>
+
+	<alias name="defaultCanonicalAttributeDefRepository" alias="canonicalAttributeModelDefinitionRepository" />
+	<bean name="defaultCanonicalAttributeDefRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultCanonicalAttributeModelDefinitionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="canonicalAttributeModelDefinitionJpaRepository" />
+	</bean>
+
+	<alias name="defaultCompositionActionJpaRepository" alias="compositionActionRepository" />
+	<bean name="defaultCompositionActionJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultCompositionActionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="compositionActionJpaRepository" />
+	</bean>
+
+	<alias name="defaultPublicationActionJpaRepository" alias="publicationActionRepository" />
+	<bean name="defaultPublicationActionJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultPublicationActionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="publicationActionJpaRepository" />
+	</bean>
+
+	<alias name="defaultPublicationRetryActionJpaRepository" alias="publicationRetryActionRepository" />
+	<bean name="defaultPublicationRetryActionJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultPublicationRetryActionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="publicationRetryActionJpaRepository" />
+	</bean>
+
+	<alias name="defaultDataHubPublicationErrorJpaRepository" alias="dataHubPublicationErrorRepository" />
+	<bean name="defaultDataHubPublicationErrorJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultDataHubPublicationErrorJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="dataHubPublicationErrorRepository" ref="dataHubPublicationErrorJpaRepository" />
+	</bean>
+
+	<alias name="defaultDataLoadingActionJpaRepository" alias="dataLoadingActionRepository" />
+	<bean name="defaultDataLoadingActionJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultDataLoadingActionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="dataLoadingActionJpaRepository" />
+	</bean>
+
+	<alias name="jpaCanonicalItemRepository" alias="canonicalItemRepository" />
+	<bean id="jpaCanonicalItemRepository" class="com.hybris.datahub.repository.jpa.impl.DefaultCanonicalItemJpaRepository">
+		<property name="repository" ref="managedCanonicalItemJpaRepository" />
+		<property name="itemConverter" ref="canonicalItemConverter" />
+		<property name="maxUpdateBatchSize" value="${datahub.sql.maxUpdateBatchSize:1000}" />
+		<property name="entityAwareCanonicalItemHelper" ref="entityAwareCanonicalItemHelper" />
+		<property name="batchRepository" ref="batchCanonicalItemRepository" />
+	</bean>
+
+
+	<alias name="defaultDataHubFeedJpaRepository" alias="dataHubFeedRepository" />
+	<bean name="defaultDataHubFeedJpaRepository" class="com.hybris.datahub.repository.jpa.impl.DefaultDataHubFeedJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="dataHubFeedJpaRepository" ref="dataHubFeedJpaRepository" />
+	</bean>
+
+	<alias name="defaultRawItemMetadataJpaRepository" alias="rawItemMetadataRepository" />
+	<bean name="defaultRawItemMetadataJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultRawItemMetadataJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="rawItemMetadataJpaRepository" />
+	</bean>
+
+	<alias name="defaultRawAttributeModelDefinitionJpaRepository" alias="rawAttributeModelDefinitionRepository" />
+	<bean name="defaultRawAttributeModelDefinitionJpaRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultRawAttributeModelDefinitionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="rawAttributeModelDefinitionJpaRepository" />
+	</bean>
+
+
+	<alias name="defaultTargetSystemJpaRepository" alias="targetSystemRepository" />
+	<bean name="defaultTargetSystemJpaRepository" class="com.hybris.datahub.repository.jpa.impl.DefaultTargetSystemJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="targetSystemJpaRepository" ref="targetSystemJpaRepository" />
+	</bean>
+
+	<alias name="jpaTargetItemMetadataRepository" alias="targetItemMetadataRepository" />
+	<bean name="jpaTargetItemMetadataRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultTargetItemMetadataJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="targetItemMetadataJpaRepository" />
+	</bean>
+
+	<alias name="jpaTargetItemRepository" alias="targetItemRepository" />
+	<bean name="jpaTargetItemRepository" class="com.hybris.datahub.repository.jpa.impl.DefaultTargetItemJpaRepository">
+		<property name="itemConverter" ref="targetItemConverter" />
+		<property name="repository" ref="managedTargetItemJpaRepository" />
+		<property name="batchRepository" ref="batchTargetItemRepository" />
+	</bean>
+
+	<alias name="jpaRawItemRepository" alias="rawItemRepository" />
+	<bean name="jpaRawItemRepository" class="com.hybris.datahub.repository.jpa.impl.DefaultRawItemJpaRepository">
+		<property name="rawItemConverter" ref="rawItemConverter" />
+		<property name="repository" ref="managedRawItemJpaRepository" />
+		<property name="maxUpdateBatchSize" value="${datahub.sql.maxUpdateBatchSize:1000}" />
+		<property name="rawItemHelper" ref="entityAwareRawItemHelper" />
+	</bean>
+
+	<alias name="jpaCanonicalItemPublicationStatusRepository" alias="canonicalItemPublicationStatusRepository" />
+	<bean name="jpaCanonicalItemPublicationStatusRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultCanonicalItemPublicationStatusJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="canonicalItemPublicationStatusRepository" ref="canonicalItemPublicationStatusJpaRepository" />
+		<property name="canonicalItemRepository" ref="canonicalItemRepository" />
+		<property name="entityAwareCanonicalItemHelper" ref="entityAwareCanonicalItemHelper" />
+		<property name="maxUpdateBatchSize" value="${datahub.sql.maxUpdateBatchSize:1000}" />
+	</bean>
+
+	<alias name="jpaRawItemConverter" alias="rawItemConverter" />
+	<bean name="jpaRawItemConverter" class="com.hybris.datahub.repository.converter.RawItemConverter">
+		<property name="beanFactory" ref="jpaBeanFactory" />
+		<property name="canonicalItemConverter" ref="canonicalItemConverter" />
+		<property name="attributesConverter" ref="itemAttributesConverter" />
+	</bean>
+
+	<alias name="jpaCanonicalItemConverter" alias="canonicalItemConverter" />
+	<bean name="jpaCanonicalItemConverter" class="com.hybris.datahub.repository.converter.CanonicalItemConverter">
+		<property name="beanFactory" ref="jpaBeanFactory" />
+		<property name="encryptionStrategy" ref="attributeEncryptionStrategy" />
+		<property name="rawItemConverter" ref="rawItemConverter" />
+		<property name="attributesConverter" ref="itemAttributesConverter" />
+		<property name="entityAwareCanonicalItemHelper" ref="entityAwareCanonicalItemHelper" />
+	</bean>
+
+	<bean id="itemAttributesConverter" class="com.hybris.datahub.repository.converter.ItemAttributesConverter">
+		<property name="cipher" ref="attributeEncryptionStrategy" />
+	</bean>
+
+	<alias name="jpaTargetItemConverter" alias="targetItemConverter" />
+	<bean name="jpaTargetItemConverter" class="com.hybris.datahub.repository.converter.TargetItemConverter">
+		<property name="beanFactory" ref="jpaBeanFactory" />
+		<property name="attributesConverter" ref="itemAttributesConverter" />
+		<property name="canonicalItemConverter" ref="canonicalItemConverter" />
+		<property name="entityAwareCanonicalItemHelper" ref="entityAwareCanonicalItemHelper" />
+	</bean>
+
+	<alias name="jpaTargetAttributeDefinitionRepository" alias="targetAttributeDefinitionRepository" />
+	<bean name="jpaTargetAttributeDefinitionRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultTargetAttributeDefinitionJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="jpaRepository" ref="targetAttributeDefinitionJpaRepository" />
+		<property name="beanFactory" ref="jpaBeanFactory" />
+	</bean>
+
+	<alias name="jpaSubTargetSystemPublicationRepository" alias="subTargetSystemPublicationRepository" />
+	<bean name="jpaSubTargetSystemPublicationRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultSubTargetSystemPublicationJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="publicationJpaRepository" ref="subTargetSystemPublicationJpaRepository" />
+	</bean>
+
+	<alias name="jpaPublicationRetryRepository" alias="publicationRetryRepository" />
+	<bean name="jpaPublicationRetryRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultPublicationRetryJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="repository" ref="publicationRetryJpaRepository" />
+		<property name="maxUpdateBatchSize" value="${datahub.sql.maxUpdateBatchSize:1000}" />
+		<property name="converter" ref="canonicalItemConverter" />
+		<property name="publicationRetryJpaRepository" ref="publicationRetryJpaRepository" />
+	</bean>
+
+	<alias name="jpaCompositeTargetSystemPublicationRepository" alias="compositeTargetSystemPublicationRepository" />
+	<bean name="jpaCompositeTargetSystemPublicationRepository"
+		  class="com.hybris.datahub.repository.jpa.impl.DefaultCompositeTargetSystemPublicationJpaRepository"
+		  parent="abstractGenericJpaRepository">
+		<property name="publicationJpaRepository" ref="compositeTargetSystemPublicationJpaRepository" />
+	</bean>
+</beans>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<!-- alias used for backward compatibility -->
+	<alias alias="hybrisPropertyConfigurer" name="applicationPropertyPlaceholderConfigurer" />
+	<bean id="applicationPropertyPlaceholderConfigurer"
+		  class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="properties" ref="applicationProperties" />
+		<property name="order" value="0" />
+		<property name="nullValue" value="@null" />
+	</bean>
+
+	<!-- appVersionProvider not depending on property placeholders as it is used to construct the property placeholder configurer -->
+	<bean id="configurationAppVersionProvider" class="com.hybris.commons.configuration.provider.PropertyAppVersionProvider"
+		  autowire-candidate="false">
+		<property name="groupId" value="undefined" />
+		<property name="artifactId" value="undefined" />
+		<property name="version" value="undefined" />
+	</bean>
+
+	<bean id="appVersionProvider" class="com.hybris.commons.configuration.provider.PropertyAppVersionProvider">
+		<property name="groupId" value="${commons.configuration.applicationGroupId}" />
+		<property name="artifactId" value="${commons.configuration.applicationArtifactId}" />
+		<property name="version" value="${commons.configuration.applicationVersion}" />
+	</bean>
+
+	<bean id="fileReloadingStrategy" class="org.apache.commons.configuration.reloading.FileChangedReloadingStrategy">
+		<property name="refreshDelay" value="5000" />
+	</bean>
+
+	<bean id="propertyReloadingStrategy" class="com.hybris.commons.configuration.impl.TimeBasedPerKeyReloadingStrategy">
+		<property name="refreshDelay" value="5000" />
+	</bean>
+
+	<!-- List of properties which will be used as property sources -->
+	<bean id="abstractFileProperties" abstract="true"
+		  class="com.hybris.commons.configuration.impl.FilePropertiesConfigurationFactoryBean">
+		<property name="reloadingStrategy" ref="fileReloadingStrategy" />
+	</bean>
+
+	<bean id="appVersionConfigurationWithVersion"
+		  class="com.hybris.commons.configuration.impl.AppVersionConfigurationFactoryBean">
+		<property name="appVersionProvider" ref="configurationAppVersionProvider" />
+		<property name="appendVersion" value="true" />
+	</bean>
+	<bean id="appVersionConfiguration" class="com.hybris.commons.configuration.impl.AppVersionConfigurationFactoryBean">
+		<property name="appVersionProvider" ref="configurationAppVersionProvider" />
+		<property name="appendVersion" value="false" />
+	</bean>
+
+	<!--    The beans here will get created at BeanFactoryPostProcessors creation time:  -->
+	<!--     - property placeholders ${} will not get resolved here                      -->
+	<!--     - afterPropertiesSet() will not be called here                              -->
+	<util:list id="staticConfigurationsList">
+		<bean class="com.hybris.commons.configuration.impl.AbsolutePathConfigurationFactoryBean">
+			<property name="fileName" value="local.properties" />
+		</bean>
+		<ref bean="appVersionConfigurationWithVersion" />
+		<ref bean="appVersionConfiguration" />
+		<bean class="com.hybris.commons.configuration.impl.EnvironmentConfigurationFactoryBean" />
+		<bean parent="abstractFileProperties">
+			<property name="fileName" value="local-test.properties" />
+		</bean>
+		<bean parent="abstractFileProperties">
+			<property name="fileName" value="local.properties" />
+		</bean>
+		<bean parent="abstractFileProperties">
+			<property name="fileName" value="platform-module.properties" />
+		</bean>
+		<bean parent="abstractFileProperties">
+			<property name="fileName" value="module-extension.properties" />
+		</bean>
+		<bean parent="abstractFileProperties">
+			<property name="fileName" value="module.properties" />
+		</bean>
+		<bean parent="abstractFileProperties">
+			<property name="fileName" value="default.properties" />
+		</bean>
+	</util:list>
+
+
+	<!-- override this in your project -->
+	<util:list id="dynamicConfigurationProvidersList">
+	</util:list>
+
+	<bean id="staticConfiguration" class="org.apache.commons.configuration.CompositeConfiguration">
+		<constructor-arg ref="staticConfigurationsList" />
+		<property name="delimiterParsingDisabled" value="true" />
+	</bean>
+
+	<bean id="dynamicConfiguration" class="com.hybris.commons.configuration.impl.BasicConfigurationProviderListAdapter">
+		<constructor-arg ref="dynamicConfigurationProvidersList" />
+		<constructor-arg ref="propertyReloadingStrategy" />
+	</bean>
+
+	<bean id="applicationConfiguration" class="com.hybris.commons.configuration.impl.DefaultConfigurationProvider">
+		<constructor-arg name="configuration">
+			<bean class="org.apache.commons.configuration.CompositeConfiguration">
+				<constructor-arg ref="applicationConfigurationList" />
+				<property name="delimiterParsingDisabled" value="true" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- typically don't override this list -->
+	<util:list id="applicationConfigurationList">
+		<ref bean="dynamicConfiguration" />
+		<ref bean="staticConfiguration" />
+	</util:list>
+
+	<bean id="applicationProperties" class="com.hybris.commons.configuration.impl.ConfigurationPropertiesAdapter">
+		<property name="configuration" ref="staticConfiguration" />
+	</bean>
+</beans>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="classpath:/META-INF/persistence-events.xml" />
+
+	<bean id="valueConverter" class="com.hybris.kernel.persistence.conversion.impl.DefaultValueConverter">
+		<property name="conversionService" ref="conversionService" />
+		<property name="tenantContextService" ref="tenantContextService" />
+		<property name="valueTypeCreator" ref="valueTypeCreator" />
+	</bean>
+
+	<bean id="valueTypeCreator" class="com.hybris.kernel.persistence.ValueTypeCreator">
+		<constructor-arg name="typeSystem" ref="typeSystem" />
+		<property name="defaultValuesService" ref="defaultValuesService" />
+	</bean>
+
+	<bean id="defaultValuesService" class="com.hybris.kernel.persistence.DefaultValuesService">
+		<property name="conversionService" ref="conversionService" />
+		<property name="typeSystem" ref="typeSystem" />
+	</bean>
+
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="com.hybris.kernel.converter.LongToDateConverter" />
+				<bean class="com.hybris.kernel.converter.StringToDateConverter" />
+				<bean class="com.hybris.kernel.converter.DateToStringConverter" />
+				<bean class="com.hybris.kernel.converter.BigDecimalToStringConverter" />
+				<bean class="com.hybris.kernel.converter.BigIntegerToStringConverter" />
+				<bean class="com.hybris.kernel.persistence.conversion.impl.HybrisIdToStringConverter" />
+				<bean class="com.hybris.kernel.converter.IntegerToBooleanConverter" />
+				<bean class="com.hybris.kernel.converter.BigDecimalToBooleanConverter" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="appVersionProvider" class="com.hybris.commons.configuration.provider.PropertyAppVersionProvider">
+		<property name="groupId" value="${kernel.applicationGroupId}" />
+		<property name="artifactId" value="${kernel.applicationArtifactId}" />
+		<property name="version" value="${kernel.applicationVersion}" />
+	</bean>
+
+	<bean id="hybrisIdFactory" class="com.hybris.kernel.persistence.impl.UuidtHybrisIdFactory" />
+
+	<bean id="domainXmlFileFactory" class="com.hybris.kernel.persistence.impl.DomainXmlFileFactory" />
+
+
+</beans>

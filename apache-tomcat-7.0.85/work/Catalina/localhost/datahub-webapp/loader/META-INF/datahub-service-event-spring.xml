@@ -1,0 +1,146 @@
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2016 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<alias name="defaultDataHubEventListenerRegistry" alias="dataHubEventListenerRegistry" />
+	<bean id="defaultDataHubEventListenerRegistry"
+		  class="com.hybris.datahub.service.impl.DefaultDataHubEventListenerRegistry"
+		  autowire="byType">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<bean name="abstractPoolActionInitiationEventListener"
+		  class="com.hybris.datahub.service.impl.AbstractPoolEventListener">
+		<property name="dataHubFeedService" ref="dataHubFeedService" />
+	</bean>
+
+	<bean name="defaultCompositionInitiationEventListener"
+		  class="com.hybris.datahub.service.impl.CompositionInitiationEventListener"
+		  parent="abstractPoolActionInitiationEventListener">
+		<property name="poolActionFacade" ref="dataHubPoolActionFacade" />
+	</bean>
+
+	<bean name="defaultPublicationInitiationEventListener"
+		  class="com.hybris.datahub.service.impl.PublicationInitiationEventListener"
+		  parent="abstractPoolActionInitiationEventListener">
+		<property name="defaultServerUrl" value="${datahub.server.url:http://localhost:8080/datahub-webapp/v1}" />
+		<property name="poolActionFacade" ref="dataHubPoolActionFacade" />
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<bean name="abstractCompositionEventListener" abstract="true"
+		  class="com.hybris.datahub.service.impl.PoolProcessLifeCycleListener">
+		<property name="poolActionQueueConsumer" ref="compositionEventEventHandlingService" />
+		<property name="queueService" ref="compositionQueueService" />
+	</bean>
+
+	<bean name="defaultPerformCompositionEventListener" class="com.hybris.datahub.service.impl.PerformProcessEventListener"
+		  parent="abstractCompositionEventListener">
+		<property name="eventClass" value="com.hybris.datahub.api.event.PerformCompositionEvent" />
+	</bean>
+
+	<bean name="defaultCompositionCompletedEventListener" class="com.hybris.datahub.service.impl.ProcessCompletedEventListener"
+		  parent="abstractCompositionEventListener">
+		<property name="eventClass" value="com.hybris.datahub.api.event.CompositionCompletedEvent" />
+		<property name="processMonitor" ref="processMonitor" />
+	</bean>
+
+	<bean name="abstractPublicationEventListener" abstract="true"
+		  class="com.hybris.datahub.service.impl.PoolProcessLifeCycleListener">
+		<property name="poolActionQueueConsumer" ref="publicationEventEventHandlingService" />
+		<property name="queueService" ref="publicationQueueService" />
+	</bean>
+
+	<bean name="defaultPerformPublicationEventListener" class="com.hybris.datahub.service.impl.PerformProcessEventListener"
+		  parent="abstractPublicationEventListener">
+		<property name="eventClass" value="com.hybris.datahub.api.event.PerformPublicationEvent" />
+	</bean>
+
+	<bean name="defaultPublicationCompletedEventListener" class="com.hybris.datahub.service.impl.ProcessCompletedEventListener"
+		  parent="abstractPublicationEventListener">
+		<property name="eventClass" value="com.hybris.datahub.api.event.PublicationCompletedEvent" />
+		<property name="processMonitor" ref="processMonitor" />
+	</bean>
+
+	<bean name="publicationActionContinuationEventHandler"
+		  class="com.hybris.datahub.service.impl.PublicationActionContinuationEventHandler">
+		<property name="eventPublicationService" ref="eventPublicationService" />
+		<property name="continuePublicationActionDecisionStrategy" ref="continuationPublicationDecisionStrategy" />
+
+	</bean>
+	<alias name="defaultContinuationPublicationDecisionStrategy" alias="continuationPublicationDecisionStrategy" />
+	<bean name="defaultContinuationPublicationDecisionStrategy"
+		  class="com.hybris.datahub.service.publication.impl.DefaultContinuationPublicationActionDecisionStrategy">
+		<property name="maxPublicationActionSize" value="${datahub.max.publication.action.size:100000}" />
+		<property name="poolActionService" ref="poolActionService" />
+		<property name="dataHubExtendedConfigService" ref="dataHubConfigService" />
+	</bean>
+
+	<alias name="defaultMetadataInitializationService" alias="metadataInitializationService" />
+	<bean name="defaultMetadataInitializationService"
+		  class="com.hybris.datahub.service.impl.DefaultMetadataInitializationService">
+		<property name="rawItemMetadataService" ref="defaultRawItemMetadataService" />
+		<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+		<property name="canonicalTypeCache" ref="canonicalTypeCache" />
+		<property name="targetItemMetadataService" ref="targetItemMetadataService" />
+		<property name="targetTypeCache" ref="targetTypeCache" />
+	</bean>
+
+	<alias name="eventBasedProcessMonitor" alias="processMonitor" />
+	<bean name="eventBasedProcessMonitor" class="com.hybris.datahub.process.impl.EventBasedProcessMonitor" />
+
+	<bean id="blockWhileProcessing" class="com.hybris.datahub.process.impl.BlockWhileProcessingAspect">
+		<constructor-arg ref="processMonitor" />
+	</bean>
+	<aop:config>
+		<aop:aspect id="blockWhileProcessingAspect" ref="blockWhileProcessing">
+			<aop:pointcut id="processingPointcut"
+						  expression="execution(@com.hybris.datahub.process.BlockWhileProcessing * *(..))" />
+			<aop:before method="checkState" pointcut-ref="processingPointcut" />
+		</aop:aspect>
+	</aop:config>
+
+	<alias name="shutdownController" alias="dataHubShutdownController" />
+	<bean name="shutdownController" class="com.hybris.datahub.lifecycle.impl.DefaultShutdownController">
+		<property name="processMonitor" ref="processMonitor" />
+		<property name="compositionService" ref="compositionService" />
+		<property name="targetSystemPublicationModificationService" ref="publicationActionService" />
+	</bean>
+
+	<bean id="blockOnShutdown" class="com.hybris.datahub.aop.BlockOnShutdownAspect">
+		<property name="dataHubStateControlService" ref="dataHubStateService" />
+	</bean>
+	<aop:config>
+		<aop:aspect id="blockOnShutdownAspect" ref="blockOnShutdown">
+			<aop:pointcut id="shutdownPointcut" expression="execution(@com.hybris.datahub.shutdown.BlockOnShutdown * *(..))" />
+			<aop:before method="checkDataHubState" pointcut-ref="shutdownPointcut" />
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="publicationRetryCleanup" class="com.hybris.datahub.aop.PublicationRetryCleanup">
+		<property name="publicationRetryService" ref="publicationRetryService" />
+	</bean>
+
+	<aop:config>
+		<aop:pointcut id="publicationCompletedPointcut"
+					  expression="execution(public * com.hybris.datahub.service.impl.DefaultEventPublicationService.publishEvent(*)) and args(event)" />
+
+		<aop:aspect id="publicationRetryCleanup" ref="publicationRetryCleanup">
+			<aop:before pointcut-ref="publicationCompletedPointcut" method="removeDuplicateItems" arg-names="event" />
+		</aop:aspect>
+	</aop:config>
+</beans>

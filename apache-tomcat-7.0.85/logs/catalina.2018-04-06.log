@@ -1,0 +1,220 @@
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.85
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Feb 7 2018 18:52:33 UTC
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.85.0
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Linux
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            4.2.0-42-generic
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          amd64
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             /usr/lib/jvm/java-8-openjdk-amd64/jre
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_91-8u91-b14-3ubuntu1~15.10.1-b14
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         /code/DATAHUB/apache-tomcat-7.0.85
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         /code/DATAHUB/apache-tomcat-7.0.85
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=/code/DATAHUB/apache-tomcat-7.0.85/conf/logging.properties
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xms8192m
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xmx8192m
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseConcMarkSweepGC
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseParNewGC
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+AlwaysPreTouch
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+DisableExplicitGC
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dignore.endorsed.dirs=
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=/code/DATAHUB/apache-tomcat-7.0.85
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=/code/DATAHUB/apache-tomcat-7.0.85
+Apr 06, 2018 9:18:14 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=/code/DATAHUB/apache-tomcat-7.0.85/temp
+Apr 06, 2018 9:18:14 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+Apr 06, 2018 9:18:15 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-10080"]
+Apr 06, 2018 9:18:15 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-10009"]
+Apr 06, 2018 9:18:15 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 576 ms
+Apr 06, 2018 9:18:15 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Apr 06, 2018 9:18:15 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.85
+Apr 06, 2018 9:18:15 PM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml
+Apr 06, 2018 9:18:15 PM org.apache.catalina.startup.HostConfig deployDescriptor
+WARNING: A docBase /code/DATAHUB/apache-tomcat-7.0.85/webapps/datahub-webapp.war inside the host appBase has been specified, and will be ignored
+Apr 06, 2018 9:18:15 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/core is already defined
+Apr 06, 2018 9:18:15 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/fmt is already defined
+Apr 06, 2018 9:18:15 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: urn:com:sun:jersey:api:view is already defined
+Apr 06, 2018 9:18:15 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 06, 2018 9:18:38 PM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deployment of configuration descriptor /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml has finished in 23,724 ms
+Apr 06, 2018 9:18:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/examples
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/examples has finished in 264 ms
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/docs
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/docs has finished in 96 ms
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT has finished in 83 ms
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/manager
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/manager has finished in 144 ms
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/ezequiel/code/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager has finished in 124 ms
+Apr 06, 2018 9:18:39 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-10080"]
+Apr 06, 2018 9:18:39 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-10009"]
+Apr 06, 2018 9:18:39 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 24487 ms
+Apr 06, 2018 10:58:21 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-10080"]
+Apr 06, 2018 10:58:21 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-10009"]
+Apr 06, 2018 10:58:21 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+SEVERE: The web application [/datahub-webapp] appears to have started a thread named [DataHubActorSystem-scheduler-1] but has failed to stop it. This is very likely to create a memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+SEVERE: The web application [/datahub-webapp] appears to have started a thread named [DataHubActorSystem-akka.actor.default-dispatcher-5] but has failed to stop it. This is very likely to create a memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+SEVERE: The web application [/datahub-webapp] appears to have started a thread named [DataHubActorSystem-akka.actor.default-dispatcher-6] but has failed to stop it. This is very likely to create a memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+SEVERE: The web application [/datahub-webapp] appears to have started a thread named [DataHubActorSystem-akka.actor.default-dispatcher-7] but has failed to stop it. This is very likely to create a memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+SEVERE: The web application [/datahub-webapp] appears to have started a thread named [DataHubActorSystem-akka.actor.default-dispatcher-8] but has failed to stop it. This is very likely to create a memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@29943227]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@16e1fc2c]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@29943227]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@1e6cf1dd]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@29943227]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@42471929]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@29943227]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@17c4d7b1]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@edd59f9]) and a value of type [akka.dispatch.BatchingExecutor.BlockableBatch] (value [[]]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@29943227]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@77c6b3e6]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@d326266]) and a value of type [akka.dispatch.MonitorableThreadFactory.AkkaForkJoinWorkerThread] (value [Thread[DataHubActorSystem-akka.actor.default-dispatcher-8,5,main]]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load akka.actor.LightArrayRevolverScheduler$$anonfun$close$1.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1792)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1750)
+	at akka.actor.LightArrayRevolverScheduler.close(Scheduler.scala:300)
+	at akka.actor.ActorSystemImpl.stopScheduler(ActorSystem.scala:727)
+	at akka.actor.ActorSystemImpl$$anonfun$liftedTree2$1$1.apply$mcV$sp(ActorSystem.scala:661)
+	at akka.actor.ActorSystemImpl$$anonfun$liftedTree2$1$1.apply(ActorSystem.scala:661)
+	at akka.actor.ActorSystemImpl$$anonfun$liftedTree2$1$1.apply(ActorSystem.scala:661)
+	at akka.actor.ActorSystemImpl$$anon$3.run(ActorSystem.scala:677)
+	at akka.actor.ActorSystemImpl$TerminationCallbacks$$anonfun$addRec$1$1.applyOrElse(ActorSystem.scala:843)
+	at akka.actor.ActorSystemImpl$TerminationCallbacks$$anonfun$addRec$1$1.applyOrElse(ActorSystem.scala:843)
+	at scala.concurrent.Future$$anonfun$andThen$1.apply(Future.scala:434)
+	at scala.concurrent.Future$$anonfun$andThen$1.apply(Future.scala:433)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:55)
+	at akka.dispatch.BatchingExecutor$BlockableBatch$$anonfun$run$1.apply$mcV$sp(BatchingExecutor.scala:91)
+	at akka.dispatch.BatchingExecutor$BlockableBatch$$anonfun$run$1.apply(BatchingExecutor.scala:91)
+	at akka.dispatch.BatchingExecutor$BlockableBatch$$anonfun$run$1.apply(BatchingExecutor.scala:91)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:72)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:90)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:399)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load scala.util.control.NonFatal$.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1792)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1750)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:55)
+	at akka.dispatch.BatchingExecutor$BlockableBatch$$anonfun$run$1.apply$mcV$sp(BatchingExecutor.scala:91)
+	at akka.dispatch.BatchingExecutor$BlockableBatch$$anonfun$run$1.apply(BatchingExecutor.scala:91)
+	at akka.dispatch.BatchingExecutor$BlockableBatch$$anonfun$run$1.apply(BatchingExecutor.scala:91)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:72)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:90)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:399)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load scala.util.control.NonFatal$.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1792)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1750)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:40)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:399)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+
+Apr 06, 2018 10:58:22 PM org.apache.catalina.loader.WebappClassLoaderBase loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load scala.util.control.NonFatal$.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1792)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1750)
+	at akka.actor.ActorSystemImpl$$anon$2.uncaughtException(ActorSystem.scala:543)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:407)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+
+Apr 06, 2018 10:58:22 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-10080"]
+Apr 06, 2018 10:58:22 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-10009"]
+Apr 06, 2018 10:58:22 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-10080"]
+Apr 06, 2018 10:58:22 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-10009"]

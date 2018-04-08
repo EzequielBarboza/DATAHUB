@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="schemaTransformationService" class="com.hybris.kernel.services.migration.impl.DefaultSchemaTransformationService">
+		<property name="typeSystemComparator" ref="typeSystemComparator" />
+		<property name="typeSystemResolver" ref="migrationTypeSystemResolver" />
+		<property name="eventService" ref="eventService" />
+	</bean>
+
+	<bean id="migrationTypeSystemResolver" class="com.hybris.kernel.services.migration.impl.MigrationTypeSystemResolver">
+		<property name="persistenceConfiguration" ref="persistenceConfiguration" />
+		<property name="schemaVersionService" ref="schemaVersionService" />
+		<property name="typeSystemReader" ref="typeSystemReader" />
+	</bean>
+
+	<bean id="migrationService" class="com.hybris.kernel.services.migration.DefaultMigrationService" autowire="byType">
+		<property name="expansionService" ref="schemaTransformationService" />
+		<property name="migrationWorker" ref="migrationWorker" />
+		<property name="persistenceConfiguration" ref="persistenceConfiguration" />
+	</bean>
+
+	<bean id="migrationWorker" class="com.hybris.kernel.services.migration.MigrationWorker">
+		<property name="migrationService" ref="migrationService" />
+		<property name="registerOnStartup" value="false" />
+	</bean>
+
+	<bean id="migrationValidator" class="com.hybris.kernel.services.migration.validation.impl.DefaultMigrationValidator">
+		<property name="typeSystemComparer" ref="typeSystemComparator" />
+		<property name="restrictions" ref="migrationValidationRestrictions" />
+		<property name="exclusions" ref="migrationValidationExclusions" />
+	</bean>
+
+	<util:list id="migrationValidationRestrictions">
+		<bean class="com.hybris.kernel.services.migration.validation.restriction.NoAttributeTypeModificationRestriction" />
+		<bean class="com.hybris.kernel.services.migration.validation.restriction.NoNewMandatoryAttributeWithoutDefValueRestriction" />
+	</util:list>
+
+	<util:list id="migrationValidationExclusions" />
+</beans>

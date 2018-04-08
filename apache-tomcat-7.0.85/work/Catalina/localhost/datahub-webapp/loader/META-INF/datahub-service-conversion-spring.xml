@@ -1,0 +1,302 @@
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2016 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="converters" class="com.hybris.datahub.conversion.base.Converters" />
+
+	<bean name="itemBusinessModelToDataConverter"
+		  class="com.hybris.datahub.conversion.item.ItemBusinessModelToDataConverter">
+		<property name="populator" ref="itemBusinessModelToDataPopulator" />
+	</bean>
+
+	<bean name="itemBusinessModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.item.ItemBusinessModelToDataPopulator">
+		<property name="maskingMode" value="${datahub.secure.data.masking.mode:true}" />
+		<property name="maskingValue" value="${datahub.secure.data.masking.value:*******}" />
+		<property name="converters" ref="converters" />
+		<property name="itemPublicationStatusModelToDataConverter" ref="canonicalItemPublicationStatusModelToDataConverter" />
+		<property name="ignoreRelations" value="false" />
+	</bean>
+
+	<bean name="itemBusinessModelToDataConverterForTracing"
+		  class="com.hybris.datahub.conversion.item.ItemBusinessModelToDataConverter">
+		<property name="populator" ref="itemBusinessModelToDataPopulatorForTracing" />
+	</bean>
+
+	<bean name="itemBusinessModelToDataPopulatorForTracing"
+		  class="com.hybris.datahub.conversion.item.ItemBusinessModelToDataPopulator">
+		<property name="maskingMode" value="${datahub.secure.data.masking.mode:true}" />
+		<property name="maskingValue" value="${datahub.secure.data.masking.value:*******}" />
+		<property name="converters" ref="converters" />
+		<property name="itemPublicationStatusModelToDataConverter" ref="canonicalItemPublicationStatusModelToDataConverter" />
+		<property name="ignoreRelations" value="true" />
+	</bean>
+
+	<bean name="feedModelToDataConverter" class="com.hybris.datahub.conversion.feed.FeedModelToDataConverter">
+		<property name="populator" ref="feedModelToDataPopulator" />
+	</bean>
+	<bean name="feedModelToDataPopulator" class="com.hybris.datahub.conversion.feed.FeedModelToDataPopulator" />
+
+	<bean name="feedDataToModelConverter" class="com.hybris.datahub.conversion.feed.FeedDataToModelConverter">
+		<property name="populator" ref="feedDataToModelPopulator" />
+		<property name="feedRepository" ref="dataHubFeedRepository" />
+	</bean>
+	<bean name="feedDataToModelPopulator" class="com.hybris.datahub.conversion.feed.FeedDataToModelPopulator" />
+
+	<bean name="poolActionModelToDataConverter"
+		  class="com.hybris.datahub.conversion.publication.PoolActionModelToDataConverter">
+		<property name="populator" ref="poolActionModelToDataPopulator" />
+	</bean>
+	<bean name="poolActionModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.publication.PoolActionModelToDataPopulator">
+		<property name="converters" ref="converters" />
+	</bean>
+
+	<bean name="publicationActionModelToDataConverter"
+		  class="com.hybris.datahub.conversion.publication.PublicationActionModelToDataConverter">
+		<property name="populator" ref="publicationActionModelToDataPopulator" />
+	</bean>
+	<bean name="publicationActionModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.publication.PublicationActionModelToDataPopulator">
+		<property name="converters" ref="converters" />
+		<property name="targetSystemPublicationModelToDataConverter" ref="targetSystemPublicationModelToDataConverter" />
+	</bean>
+
+	<bean name="abstractPublicationActionDataToModelConverter"
+		  class="com.hybris.datahub.conversion.publication.AbstractPublicationActionDataToModelConverter" abstract="true">
+		<property name="dataHubPoolRepository" ref="dataHubPoolRepository" />
+		<property name="targetSystemPublicationConverter" ref="targetSystemPublicationDataToModelConverter" />
+	</bean>
+
+	<bean name="publicationActionDataToModelConverter" parent="abstractPublicationActionDataToModelConverter"
+		  class="com.hybris.datahub.conversion.publication.PublicationActionDataToModelConverter">
+		<property name="publicationActionRepository" ref="publicationActionRepository" />
+	</bean>
+
+	<bean name="publicationRetryActionDataToModelConverter" parent="abstractPublicationActionDataToModelConverter"
+		  class="com.hybris.datahub.conversion.publication.PublicationRetryActionDataToModelConverter">
+		<property name="publicationActionRepository" ref="publicationRetryActionRepository" />
+	</bean>
+
+	<bean name="targetSystemPublicationModelToDataConverter"
+		  class="com.hybris.datahub.conversion.publication.TargetSystemPublicationModelToDataConverter">
+		<property name="populator" ref="targetSystemPublicationModelToDataPopulator" />
+	</bean>
+
+	<bean name="targetSystemPublicationModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.publication.TargetSystemPublicationModelToDataPopulator">
+	</bean>
+
+
+	<bean name="targetSystemPublicationDataToModelConverter"
+		  class="com.hybris.datahub.conversion.publication.TargetSystemPublicationDataToModelConverter">
+		<property name="compositeTargetSystemPublicationRepository" ref="compositeTargetSystemPublicationRepository" />
+		<property name="targetSystemRepository" ref="targetSystemRepository" />
+	</bean>
+
+	<bean name="publicationErrorModelToDataConverter"
+		  class="com.hybris.datahub.conversion.publication.PublicationErrorModelToDataConverter">
+		<property name="populator" ref="publicationErrorModelToDataPopulator" />
+	</bean>
+	<bean name="publicationErrorModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.publication.PublicationErrorModelToDataPopulator">
+	</bean>
+
+	<bean name="publicationErrorDataToModelConverter"
+		  class="com.hybris.datahub.conversion.publication.PublicationErrorDataToModelConverter">
+		<property name="dataHubPublicationErrorRepository" ref="dataHubPublicationErrorRepository" />
+	</bean>
+
+	<bean name="rawAttributeModelToDataConverter" class="com.hybris.datahub.conversion.metadata.RawAttributeModelToDataConverter">
+		<property name="populator" ref="rawAttributeModelToDataPopulator" />
+	</bean>
+	<bean name="rawAttributeModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.metadata.RawAttributeModelToDataPopulator" />
+
+	<bean name="rawAttributeDataToModelConverter" class="com.hybris.datahub.conversion.metadata.RawAttributeDataToModelConverter">
+		<property name="rawItemMetadataService" ref="rawItemMetadataService" />
+		<property name="attributeRepository" ref="rawAttributeModelDefinitionRepository" />
+	</bean>
+
+	<bean name="canonicalAttributeModelToDataConverter"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalAttributeModelToDataConverter">
+		<property name="populator" ref="canonicalAttributeModelToDataPopulator" />
+	</bean>
+	<bean name="canonicalAttributeModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalAttributeModelToDataPopulator">
+	</bean>
+
+	<bean name="canonicalAttributeDataToModelConverter"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalAttributeDataToModelConverter">
+		<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+		<property name="attributeRepository" ref="canonicalAttributeModelDefinitionRepository" />
+		<property name="dataItemService" ref="dataItemService" />
+	</bean>
+
+	<bean name="canonicalTransformationDataToModelConverter"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalTransformationDataToModelConverter">
+		<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+		<property name="canonicalTransformationDefinitionRepository" ref="canonicalTransformationDefinitionRepository" />
+	</bean>
+	<bean name="canonicalTransformationModelToDataConverter"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalTransformationModelToDataConverter">
+		<property name="populator" ref="canonicalTransformationModelToDataPopulator" />
+	</bean>
+	<bean name="canonicalTransformationModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalTransformationModelToDataPopulator">
+	</bean>
+
+	<bean name="itemTypeModelToDataPopulator" class="com.hybris.datahub.conversion.metadata.RawItemTypeModelToDataPopulator" />
+	<bean name="itemTypeModelToDataConverter" class="com.hybris.datahub.conversion.metadata.RawItemTypeModelToDataConverter">
+		<property name="populator" ref="itemTypeModelToDataPopulator" />
+	</bean>
+
+	<bean name="canonicalItemTypeDataToModelConverter"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalItemTypeDataToModelConverter">
+		<property name="canonicalItemMetadataRepository" ref="canonicalItemMetadataRepository" />
+		<property name="canonicalTypeCache" ref="canonicalTypeCache" />
+	</bean>
+
+	<bean name="rawItemTypeDataToModelConverter"
+		  class="com.hybris.datahub.conversion.metadata.RawItemTypeDataToModelConverter">
+		<property name="rawItemMetadataRepository" ref="rawItemMetadataRepository" />
+	</bean>
+
+	<bean name="canonicalItemTypeModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalItemTypeModelToDataPopulator" />
+	<bean name="canonicalItemTypeModelToDataConverter"
+		  class="com.hybris.datahub.conversion.metadata.CanonicalItemTypeModelToDataConverter">
+		<property name="populator" ref="canonicalItemTypeModelToDataPopulator" />
+	</bean>
+
+	<bean name="targetSystemDataToModelConverter" class="com.hybris.datahub.conversion.metadata.TargetSystemDataToModelConverter">
+		<property name="encryptionStrategy" ref="attributeEncryptionStrategy" />
+		<property name="targetSystemRepository" ref="targetSystemRepository" />
+	</bean>
+
+	<bean name="targetSystemModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.metadata.TargetSystemModelToDataPopulator">
+		<property name="maskingValue" value="${datahub.secure.data.masking.value:*******}" />
+	</bean>
+	<bean name="targetSystemModelToDataConverter" class="com.hybris.datahub.conversion.metadata.TargetSystemModelToDataConverter">
+		<property name="populator" ref="targetSystemModelToDataPopulator" />
+	</bean>
+
+	<bean name="targetItemTypeDataToModelConverter"
+		  class="com.hybris.datahub.conversion.metadata.TargetItemTypeDataToModelConverter">
+		<property name="targetSystemService" ref="targetSystemService" />
+		<property name="canonicalItemMetadataService" ref="canonicalItemMetadataService" />
+		<property name="targetItemMetadataRepository" ref="targetItemMetadataRepository" />
+		<property name="targetItemMetadataService" ref="targetItemMetadataService" />
+		<property name="targetTypeCache" ref="targetTypeCache" />
+	</bean>
+
+	<bean name="targetItemTypeModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.metadata.TargetItemTypeModelToDataPopulator" />
+	<bean name="targetItemTypeModelToDataConverter"
+		  class="com.hybris.datahub.conversion.metadata.TargetItemTypeModelToDataConverter">
+		<property name="populator" ref="targetItemTypeModelToDataPopulator" />
+	</bean>
+
+	<bean name="targetAttributeDataToModelConverter"
+		  class="com.hybris.datahub.conversion.metadata.TargetAttributeDataToModelConverter">
+		<property name="targetAttributeDefinitionRepository" ref="targetAttributeDefinitionRepository" />
+		<property name="targetItemMetadataService" ref="targetItemMetadataService" />
+	</bean>
+
+	<bean name="targetAttributeModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.metadata.TargetAttributeModelToDataPopulator">
+	</bean>
+	<bean name="targetAttributeModelToDataConverter"
+		  class="com.hybris.datahub.conversion.metadata.TargetAttributeModelToDataConverter">
+		<property name="populator" ref="targetAttributeModelToDataPopulator" />
+	</bean>
+
+	<bean name="messageToRawFragmentDataPopulator"
+		  class="com.hybris.datahub.conversion.integration.MessageToRawFragmentDataPopulator" />
+	<bean name="messageToRawFragmentDataConverter"
+		  class="com.hybris.datahub.conversion.integration.MessageToRawFragmentDataConverter">
+		<property name="populator" ref="messageToRawFragmentDataPopulator" />
+	</bean>
+
+	<bean name="compositionActionModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.composition.CompositionActionModelToDataPopulator">
+	</bean>
+	<bean name="compositionActionModelToDataConverter"
+		  class="com.hybris.datahub.conversion.composition.CompositionActionModelToDataConverter">
+		<property name="populator" ref="compositionActionModelToDataPopulator" />
+	</bean>
+
+	<bean name="canonicalItemPublicationStatusModelToDataConverter"
+		  class="com.hybris.datahub.conversion.publication.CanonicalItemPublicationStatusModelToDataConverter">
+		<property name="populator" ref="canonicalItemPublicationStatusModelToDataPopulator" />
+	</bean>
+	<bean name="canonicalItemPublicationStatusModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.publication.CanonicalItemPublicationStatusModelToDataPopulator">
+		<property name="converters" ref="converters" />
+		<property name="errorConverter" ref="publicationErrorModelToDataConverter" />
+	</bean>
+
+	<bean name="dataLoadingActionModelToDataConverter"
+		  class="com.hybris.datahub.conversion.dataloading.DataLoadingActionModelToDataConverter">
+		<property name="populator" ref="dataLoadingActionModelToDataPopulator" />
+	</bean>
+	<bean name="dataLoadingActionModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.dataloading.DataLoadingActionModelToDataPopulator">
+		<property name="feedConverter" ref="feedModelToDataConverter" />
+	</bean>
+
+	<bean name="targetSystemPublicationFilterFactory"
+		  class="com.hybris.datahub.conversion.filter.TargetSystemPublicationFilterFactory">
+		<property name="feedService" ref="dataHubFeedService" />
+		<property name="targetSystemService" ref="targetSystemService" />
+	</bean>
+
+	<bean name="dataItemFilterFactory"
+		  class="com.hybris.datahub.conversion.filter.DataItemFilterFactory" />
+
+	<bean name="compositionActionFilterFactory"
+		  class="com.hybris.datahub.conversion.filter.CompositionActionFilterFactory">
+		<property name="feedService" ref="dataHubFeedService" />
+	</bean>
+
+	<bean name="dataLoadingFilterFactory"
+		  class="com.hybris.datahub.conversion.filter.DataLoadingFilterFactory" />
+
+	<bean name="publishedItemFilterFactory"
+		  class="com.hybris.datahub.conversion.filter.PublishedItemFilterFactory" />
+
+	<alias name="attributeEncryptionStrategy" alias="aes128AttributeEncryptionStrategy" />
+	<bean id="attributeEncryptionStrategy" class="com.hybris.datahub.security.impl.AES128AttributeEncryptionStrategy">
+		<property name="keyRetrievalStrategy" ref="keyRetrievalStrategy" />
+	</bean>
+	<bean id="keyRetrievalStrategy" class="com.hybris.datahub.security.impl.DefaultEncryptionKeyRetrievalStrategy">
+		<property name="keyFilePath" value="${datahub.encryption.key.path:}" />
+	</bean>
+
+	<bean name="rawFragmentToRawItemConverter" class="com.hybris.datahub.conversion.item.RawFragmentToRawItemConverter">
+		<property name="populator" ref="rawFragmentToRawItemPopulator" />
+	</bean>
+	<bean name="rawFragmentToRawItemPopulator" class="com.hybris.datahub.conversion.item.RawFragmentToRawItemPopulator" />
+
+	<bean name="compositionErrorModelToDataPopulator"
+		  class="com.hybris.datahub.conversion.composition.CompositionErrorModelToDataPopulator" />
+	<bean name="compositionErrorModelToDataConverter"
+		  class="com.hybris.datahub.conversion.composition.CompositionErrorModelToDataConverter">
+		<property name="populator" ref="compositionErrorModelToDataPopulator" />
+	</bean>
+</beans>

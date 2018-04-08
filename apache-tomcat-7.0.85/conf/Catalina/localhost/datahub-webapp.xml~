@@ -1,0 +1,8 @@
+<Context antiJARLocking="true"
+         docBase="/path/to/datahub/war/datahub-webapp-5.x.x.x-RCx.war"
+         reloadable="true">
+    <Loader className="org.apache.catalina.loader.VirtualWebappLoader"
+            virtualClasspath=
+                "/path/to/datahub/config-dir/;
+                 /path/to/datahub/extensions-dir/*.jar" />
+</Context>

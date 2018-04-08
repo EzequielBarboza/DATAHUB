@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="classpath:/META-INF/hybris-commons-configuration-spring.xml" />
+
+	<bean id="systemInformationLogger" class="com.hybris.kernel.utils.SystemInformationLogger">
+		<property name="autoInitMode" value="${kernel.autoInitMode}" />
+		<property name="cacheEnabled" value="${kernel.cacheEnabled}" />
+		<property name="jdbcUrl" value="${dataSource.jdbcUrl}" />
+		<property name="className" value="${dataSource.className}" />
+		<property name="username" value="${dataSource.username}" />
+		<property name="password" value="${dataSource.password}" />
+		<property name="jndiName" value="${dataSource.jndiName}" />
+		<property name="mongoUrl" value="${persistence.engine.mongodb.url}" />
+		<property name="casssandraUrl" value="${persistence.engine.cassandra.url}" />
+		<property name="casssandraClusterName" value="${persistence.engine.cassandra.clusterName}" />
+		<property name="casssandraKeyspaceName" value="${persistence.engine.cassandra.keyspaceName}" />
+		<property name="neoPath" value="${persistence.engine.neo4j.path}" />
+		<property name="hybrisEnv" value="${HYBRIS_ENV}" />
+		<property name="flushBeforeQuery" value="${kernel.flushBeforeQuery}" />
+		<property name="defaultTenant" value="${kernel.defaultTenant}" />
+		<property name="singleTenantMode" value="${kernel.singleTenantMode}" />
+	</bean>
+
+</beans>

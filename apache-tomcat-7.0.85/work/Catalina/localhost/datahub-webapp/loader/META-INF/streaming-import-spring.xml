@@ -1,0 +1,51 @@
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2015 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="streamingImportPersistenceManager"
+		  class="com.hybris.kernel.persistence.importing.streaming.impl.StreamingImportService"
+		  autowire="byName" parent="abstractStreamingImportService">
+		<property name="processorChainFactory">
+			<bean class="com.hybris.kernel.persistence.importing.streaming.impl.DefaultProcessorChainFactory">
+				<lookup-method name="createChain" bean="persistenceManagerStoringChain" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="persistenceManagerStoringChain"
+		  class="com.hybris.kernel.persistence.importing.streaming.impl.DefaultProcessorChain"
+		  parent="abstractPersistenceServiceImportChain" scope="prototype">
+		<constructor-arg name="chain">
+			<list>
+				<ref bean="keyGeneratingProcessor" />
+				<ref bean="keyMappingProcessor" />
+				<ref bean="batchStreamingProcessor" />
+				<ref bean="defaultVersionAttributeSettingProcessor" />
+				<bean parent="abstractTransactionProcessor"
+					  class="com.hybris.kernel.persistence.importing.streaming.processors.TransactionProcessorWrapper"
+					  scope="prototype">
+					<constructor-arg ref="persistenceManagerStreamingProcessor" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="persistenceManagerStreamingProcessor"
+		  class="com.hybris.kernel.services.persistence.importing.PersistenceManagerStoringProcessor" scope="prototype">
+		<property name="managedObjectFactory" ref="managedObjectFactory" />
+		<property name="pm" ref="persistenceManager" />
+		<property name="tenantContextService" ref="tenantContextService" />
+	</bean>
+
+</beans>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="deploymentService"
+		  class="com.hybris.kernel.engine.jdbc.ddl.DeploymentService">
+		<constructor-arg ref="typeSystem" />
+	</bean>
+
+	<bean id="localizedDeploymentService"
+		  class="com.hybris.kernel.engine.jdbc.ddl.LocalizedDeploymentService">
+	</bean>
+
+	<bean id="propertyDeploymentService"
+		  class="com.hybris.kernel.engine.jdbc.ddl.PropertyDeploymentService">
+		<constructor-arg name="valueTypeSqlType" value="${kernel.jdbc.schemalessAttributeType}" />
+	</bean>
+
+	<bean id="jdbcValueMapping"
+		  class="com.hybris.kernel.engine.jdbc.valuemapper.JdbcValueMapper">
+	</bean>
+
+	<bean id="sqlBuilder" class="com.hybris.kernel.engine.jdbc.util.SqlBuilder" />
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+		<property name="fetchSize" value="${kernel.jdbc.fetchSize}" />
+		<property name="maxRows" value="${kernel.jdbc.maxRows}" />
+	</bean>
+
+	<bean id="hybrisPlatformFactory" class="com.hybris.kernel.engine.jdbc.ddl.HybrisPlatformFactory">
+		<constructor-arg name="dataSource" ref="dataSource" />
+		<constructor-arg name="jdbcUrl" value="${dataSource.jdbcUrl}" />
+	</bean>
+
+	<bean id="platform" factory-bean="hybrisPlatformFactory" factory-method="createPlatform" />
+
+	<bean id="ddlGenerator" class="com.hybris.kernel.engine.jdbc.ddl.DdlGenerator">
+		<constructor-arg name="platform" ref="platform" />
+		<constructor-arg name="delimitedIdentifierMode" value="${kernel.jdbc.platform.delimitedIdentifierMode}" />
+		<constructor-arg name="deploymentService" ref="deploymentService" />
+		<constructor-arg name="localizedDeploymentService" ref="localizedDeploymentService" />
+		<constructor-arg name="propertyDeploymentService" ref="propertyDeploymentService" />
+		<constructor-arg name="schemaName" value="${kernel.jdbc.schemaName}" />
+		<constructor-arg name="propConfigurationBuilder" ref="propertiesStorageStrategyConfigurationBuilder" />
+		<property name="idColumnClass" value="com.hybris.kernel.api.HybrisId"/>
+	</bean>
+
+	<bean id="batchCollectorFactory" class="com.hybris.kernel.engine.jdbc.batch.BatchCollectorFactory">
+		<property name="ddlGenerator" ref="ddlGenerator" />
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="oracleBatchSize" value="${kernel.jdbc.batch.oracle.batchSize}" />
+		<property name="batchDisabled" value="${kernel.jdbc.batch.disabled}" />
+	</bean>
+
+	<bean id="flatPersistence" class="com.hybris.kernel.engine.jdbc.schemaless.FlatSchemaless">
+		<constructor-arg ref="sqlBuilder" />
+		<constructor-arg ref="tenantContextService" />
+		<constructor-arg ref="ddlGenerator" />
+		<constructor-arg ref="deploymentService" />
+		<constructor-arg ref="jdbcTemplate" />
+		<constructor-arg ref="jdbcValueMapping" />
+	</bean>
+	<bean id="blobPersistence" class="com.hybris.kernel.engine.jdbc.schemaless.BlobSchemaless">
+		<constructor-arg ref="sqlBuilder" />
+		<constructor-arg ref="tenantContextService" />
+		<constructor-arg ref="ddlGenerator" />
+		<constructor-arg ref="deploymentService" />
+		<constructor-arg ref="jdbcTemplate" />
+		<constructor-arg ref="jdbcValueMapping" />
+	</bean>
+	<util:map id="entityPersistences" key-type="java.lang.String"
+			  value-type="com.hybris.kernel.engine.jdbc.impl.EntityPersistence">
+		<entry key="FLAT" value-ref="flatPersistence" />
+		<entry key="BLOB" value-ref="blobPersistence" />
+	</util:map>
+
+	<bean name="propertiesStorageStrategyConfigurationBuilder"
+		  class="com.hybris.kernel.engine.jdbc.config.PropertiesStorageStrategyConfigurationBuilder">
+		<constructor-arg ref="typeSystem" />
+		<constructor-arg type="com.hybris.kernel.engine.jdbc.config.PropertyStorageStrategy"
+						 value="${schemaless.storage.strategy.default:FLAT}" />
+		<constructor-arg type="java.lang.String" value="${schemaless.storage.strategy.exceptions:BLOB;}" />
+	</bean>
+	<bean id="queryEngine" class="com.hybris.kernel.engine.jdbc.criteria.QueryEngine" p:typeSystem-ref="typeSystem"
+		  p:deploymentService-ref="deploymentService" p:jdbcValueMapping-ref="jdbcValueMapping"
+		  p:jdbcTemplate-ref="jdbcTemplate"
+		  p:defaultValuesService-ref="defaultValuesService"
+		  p:propConfigurationBuilder-ref="propertiesStorageStrategyConfigurationBuilder">
+		<property name="sqlQueryConverter">
+			<bean class="com.hybris.kernel.engine.jdbc.criteria.QueryEngineConverter">
+				<constructor-arg ref="deploymentService" />
+				<constructor-arg ref="typeSystem" />
+				<constructor-arg>
+					<bean class="java.lang.String" factory-bean="ddlGenerator" factory-method="getDelimiterToken" />
+				</constructor-arg>
+			</bean>
+		</property>
+		<property name="dbName">
+			<bean class="java.lang.String" factory-bean="ddlGenerator" factory-method="getDatabaseName" />
+		</property>
+	</bean>
+
+	<bean id="jdbcPersistenceEngine"
+		  class="com.hybris.kernel.engine.jdbc.impl.JdbcPersistenceEngine" p:queryEngine-ref="queryEngine">
+		<property name="keyFactory" ref="hybrisIdFactory" />
+		<property name="deploymentService" ref="deploymentService" />
+		<property name="localizedDeploymentService" ref="localizedDeploymentService" />
+		<property name="propertyDeploymentService" ref="propertyDeploymentService" />
+		<property name="jdbcValueMapping" ref="jdbcValueMapping" />
+		<property name="typeSystem" ref="typeSystem" />
+		<property name="sqlBuilder" ref="sqlBuilder" />
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="ddlGenerator" ref="ddlGenerator" />
+		<property name="tenantContextService" ref="tenantContextService" />
+		<property name="batchCollectorFactory" ref="batchCollectorFactory" />
+		<property name="valueTypeCreator" ref="valueTypeCreator" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="propConfigurationBuilder" ref="propertiesStorageStrategyConfigurationBuilder" />
+		<property name="entityPersistences" ref="entityPersistences" />
+		<property name="defaultValuesService" ref="defaultValuesService"/>
+		<property name="ignoreTenant" value="${kernel.init.ignore.tenant:false}"/>
+	</bean>
+</beans>

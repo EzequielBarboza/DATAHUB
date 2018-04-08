@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="migrationValidator" class="com.hybris.kernel.services.migration.validation.impl.DefaultMigrationValidator">
+		<property name="typeSystemComparer" ref="typeSystemComparator" />
+		<property name="restrictions" ref="migrationValidationRestrictions" />
+		<property name="exclusions" ref="migrationValidationExclusions" />
+	</bean>
+
+	<util:list id="migrationValidationRestrictions">
+		<bean class="com.hybris.kernel.services.migration.validation.restriction.NoAttributeTypeModificationRestriction" />
+		<bean class="com.hybris.kernel.services.migration.validation.restriction.NoNewMandatoryAttributeWithoutDefValueRestriction" />
+	</util:list>
+
+	<util:list id="migrationValidationExclusions" />
+</beans>

@@ -1,0 +1,66 @@
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2016 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultDataHubStateService" alias="dataHubStateService" />
+	<bean name="defaultDataHubStateService" class="com.hybris.datahub.lifecycle.impl.DefaultDataHubStateService">
+		<property name="shutdownController" ref="shutdownController" />
+		<property name="processMonitor" ref="processMonitor" />
+	</bean>
+
+	<alias name="defaultShutdownController" alias="shutdownController" />
+	<bean name="defaultShutdownController" class="com.hybris.datahub.lifecycle.impl.DefaultShutdownController">
+		<property name="processMonitor" ref="processMonitor" />
+	</bean>
+
+	<bean name="preInitializationHandlerRegistry"
+		  class="com.hybris.datahub.lifecycle.initialization.PreInitializationHandlerRegistry" autowire="byType" />
+
+	<alias name="defaultPreInitializationService" alias="preInitializationService" />
+	<bean name="defaultPreInitializationService" class="com.hybris.datahub.lifecycle.impl.DefaultPreInitializationService">
+		<property name="preInitializationHandlerRegistry" ref="preInitializationHandlerRegistry" />
+	</bean>
+
+	<bean name="compositionsRestartHandler"
+		  class="com.hybris.datahub.lifecycle.initialization.impl.PendingCompositionsRestartHandler">
+		<property name="actionService" ref="poolActionService" />
+		<property name="compositionQueue" ref="compositionQueueService" />
+	</bean>
+	<bean name="publicationsRestartHandler"
+		  class="com.hybris.datahub.lifecycle.initialization.impl.PendingPublicationsRestartHandler">
+		<property name="actionService" ref="poolActionService" />
+		<property name="publicationQueue" ref="publicationQueueService" />
+		<property name="callbackUrl" value="${datahub.server.url:http://localhost:8080/datahub-webapp/v1}" />
+	</bean>
+
+	<bean name="poolInitializationHandler" abstract="true" class="com.hybris.datahub.lifecycle.initialization.impl.PoolInitializationHandler">
+		<property name="dataHubFeedService" ref="dataHubFeedService" />
+	</bean>
+	<bean name="autoCompose" class="com.hybris.datahub.lifecycle.initialization.impl.AutoComposeOnStartupHandler" parent="poolInitializationHandler">
+		<property name="autoCompositionDecisionStrategy" ref="autoCompositionDecisionStrategy" />
+		<property name="compositionService" ref="compositionService" />
+	</bean>
+	<bean name="compositionReStart" class="com.hybris.datahub.lifecycle.initialization.DataHubStartupListener">
+		<property name="eventClass" value="com.hybris.datahub.api.event.DataHubInitializationCompletedEvent" />
+		<property name="poolActionQueueConsumer" ref="compositionEventEventHandlingService" />
+		<property name="feedService" ref="dataHubFeedService" />
+	</bean>
+	<bean name="publicationReStart" class="com.hybris.datahub.lifecycle.initialization.DataHubStartupListener">
+		<property name="eventClass" value="com.hybris.datahub.api.event.DataHubInitializationCompletedEvent" />
+		<property name="poolActionQueueConsumer" ref="publicationEventEventHandlingService" />
+		<property name="feedService" ref="dataHubFeedService" />
+	</bean>
+</beans>

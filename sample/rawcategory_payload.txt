@@ -1,0 +1,25 @@
+sourceId,name,description,isoCode,parent,executionId
+1,"Katalog öffnen",,de,,1234
+1,"Open Catalogue",,en,,1234
+20,"Clothes",,en,1,1234
+20,"Kleidung",,de,1,1234
+20,,,,1,1234
+190000,"Herren Schnee Kleidung",,de,,1234
+190000,"Snowwear men",,en,,1234
+190000,,,,100,1234
+200000,"Frauen Schnee Kleidung",,de,20,1234
+200000,"Snowwear women",,en,100,1234
+2625,Colour,,en,,1234
+2625,Farbe,,de,,1234
+270000,"Streetwear Kinder",,de,,1234
+270000,"Streetwear youth",,en,,1234
+3912,Material,,de,,1234
+3912,Material,,en,,1234
+400000,"Schuhe Women",,de,,1234
+400000,"Shoes women",,en,,1234
+tshirts,"T-shirts",,en,,1234
+190100,"Snow Jackets",,en,190000,1234
+190300,"Snow Pants",,en,190000,1234
+190300,"Snowboard Hosen",,de,190000,1234
+100,"Sportware",,en,20,1234
+100,"Sportbekleidung",,de,,1234
