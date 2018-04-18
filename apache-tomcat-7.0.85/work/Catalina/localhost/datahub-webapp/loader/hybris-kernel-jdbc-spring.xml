@@ -1,9 +1,0 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<import resource="hybris-kernel-spring.xml" />
-	<import resource="classpath:/META-INF/jdbc-datasource-spring.xml" />
-	<import resource="classpath:/META-INF/jdbc-engine-spring.xml" />
-	<import resource="classpath:/default-engine-mapping.xml" />
-</beans>

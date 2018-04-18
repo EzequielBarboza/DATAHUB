@@ -1,2 +1,0 @@
-id,name,description,poolingStrategy,pools
-0,"DEFAULT_FEED","Default feed","GLOBAL_POOL",DataHubPool|0

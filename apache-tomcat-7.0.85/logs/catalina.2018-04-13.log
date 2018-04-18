@@ -1,0 +1,378 @@
+Apr 13, 2018 10:11:52 AM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 10:11:53 AM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 10:11:53 AM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Apr 13, 2018 10:11:53 AM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@70f2572]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@3286fe73]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 13, 2018 10:11:53 AM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 10:11:53 AM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 10:11:53 AM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 10:11:53 AM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.85
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Feb 7 2018 18:52:33 UTC
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.85.0
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Mac OS X
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            10.13.3
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          x86_64
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             /Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home/jre
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_162-b12
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         /CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         /CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=/CODE/DATAHUB/apache-tomcat-7.0.85/conf/logging.properties
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xms8192m
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xmx8192m
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseConcMarkSweepGC
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseParNewGC
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+AlwaysPreTouch
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+DisableExplicitGC
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dignore.endorsed.dirs=
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=/CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=/CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=/CODE/DATAHUB/apache-tomcat-7.0.85/temp
+Apr 13, 2018 10:13:06 AM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /Users/ezequiel/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+Apr 13, 2018 10:13:06 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 10:13:06 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 752 ms
+Apr 13, 2018 10:13:06 AM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Apr 13, 2018 10:13:06 AM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.85
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /CODE/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml
+Apr 13, 2018 10:13:06 AM org.apache.catalina.startup.HostConfig deployDescriptor
+WARNING: A docBase /code/DATAHUB/apache-tomcat-7.0.85/webapps/datahub-webapp.war inside the host appBase has been specified, and will be ignored
+Apr 13, 2018 10:13:07 AM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/core is already defined
+Apr 13, 2018 10:13:07 AM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/fmt is already defined
+Apr 13, 2018 10:13:07 AM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: urn:com:sun:jersey:api:view is already defined
+Apr 13, 2018 10:13:07 AM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 10:13:45 AM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deployment of configuration descriptor /CODE/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml has finished in 39,239 ms
+Apr 13, 2018 10:13:45 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/docs
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/docs has finished in 273 ms
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/manager
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/manager has finished in 353 ms
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/examples
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/examples has finished in 535 ms
+Apr 13, 2018 10:13:46 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT
+Apr 13, 2018 10:13:47 AM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 10:13:47 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT has finished in 115 ms
+Apr 13, 2018 10:13:47 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager
+Apr 13, 2018 10:13:47 AM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 10:13:47 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager has finished in 164 ms
+Apr 13, 2018 10:13:47 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 10:13:47 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 10:13:47 AM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 40758 ms
+Apr 13, 2018 12:03:06 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 12:03:06 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 12:03:06 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Apr 13, 2018 12:03:07 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@1887f019]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@5593247c]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 13, 2018 12:03:07 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 12:03:07 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 12:03:07 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 12:03:07 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.85
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Feb 7 2018 18:52:33 UTC
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.85.0
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Mac OS X
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            10.13.3
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          x86_64
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             /Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home/jre
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_162-b12
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         /CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         /CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=/CODE/DATAHUB/apache-tomcat-7.0.85/conf/logging.properties
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xms8192m
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xmx8192m
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseConcMarkSweepGC
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseParNewGC
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+AlwaysPreTouch
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+DisableExplicitGC
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dignore.endorsed.dirs=
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=/CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=/CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 12:31:10 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=/CODE/DATAHUB/apache-tomcat-7.0.85/temp
+Apr 13, 2018 12:31:10 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /Users/ezequiel/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+Apr 13, 2018 12:31:11 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 12:31:11 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 12:31:11 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1493 ms
+Apr 13, 2018 12:31:11 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Apr 13, 2018 12:31:11 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.85
+Apr 13, 2018 12:31:11 PM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /CODE/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml
+Apr 13, 2018 12:31:11 PM org.apache.catalina.startup.HostConfig deployDescriptor
+WARNING: A docBase /code/DATAHUB/apache-tomcat-7.0.85/webapps/datahub-webapp.war inside the host appBase has been specified, and will be ignored
+Apr 13, 2018 12:31:12 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/core is already defined
+Apr 13, 2018 12:31:12 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/fmt is already defined
+Apr 13, 2018 12:31:13 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: urn:com:sun:jersey:api:view is already defined
+Apr 13, 2018 12:31:13 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 12:32:22 PM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deployment of configuration descriptor /CODE/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml has finished in 70,601 ms
+Apr 13, 2018 12:32:22 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/docs
+Apr 13, 2018 12:32:22 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 12:32:22 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/docs has finished in 462 ms
+Apr 13, 2018 12:32:22 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/manager
+Apr 13, 2018 12:32:23 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 12:32:23 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/manager has finished in 772 ms
+Apr 13, 2018 12:32:23 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/examples
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/examples has finished in 902 ms
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT has finished in 325 ms
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager has finished in 286 ms
+Apr 13, 2018 12:32:24 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 12:32:24 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 12:32:24 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 73468 ms
+Apr 13, 2018 2:48:23 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 2:48:23 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 2:48:24 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Apr 13, 2018 2:48:25 PM org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalMapForLeaks
+SEVERE: The web application [/datahub-webapp] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@41148366]) and a value of type [scala.concurrent.forkjoin.ForkJoinPool.Submitter] (value [scala.concurrent.forkjoin.ForkJoinPool$Submitter@457ac7db]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Apr 13, 2018 2:48:25 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 2:48:25 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 2:48:25 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 2:48:25 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.85
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Feb 7 2018 18:52:33 UTC
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.85.0
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Mac OS X
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            10.13.3
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          x86_64
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             /Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home/jre
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_162-b12
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         /CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         /CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=/CODE/DATAHUB/apache-tomcat-7.0.85/conf/logging.properties
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xms8192m
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Xmx8192m
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseConcMarkSweepGC
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+UseParNewGC
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+AlwaysPreTouch
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -XX:+DisableExplicitGC
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dignore.endorsed.dirs=
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=/CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=/CODE/DATAHUB/apache-tomcat-7.0.85
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=/CODE/DATAHUB/apache-tomcat-7.0.85/temp
+Apr 13, 2018 8:50:40 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /Users/ezequiel/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+Apr 13, 2018 8:50:40 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 8:50:40 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1098 ms
+Apr 13, 2018 8:50:40 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Apr 13, 2018 8:50:40 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.85
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /CODE/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml
+Apr 13, 2018 8:50:40 PM org.apache.catalina.startup.HostConfig deployDescriptor
+WARNING: A docBase /code/DATAHUB/apache-tomcat-7.0.85/webapps/datahub-webapp.war inside the host appBase has been specified, and will be ignored
+Apr 13, 2018 8:50:41 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/core is already defined
+Apr 13, 2018 8:50:41 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/fmt is already defined
+Apr 13, 2018 8:50:41 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: urn:com:sun:jersey:api:view is already defined
+Apr 13, 2018 8:50:41 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 8:51:54 PM org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deployment of configuration descriptor /CODE/DATAHUB/apache-tomcat-7.0.85/conf/Catalina/localhost/datahub-webapp.xml has finished in 74,285 ms
+Apr 13, 2018 8:51:54 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/docs
+Apr 13, 2018 8:51:54 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 8:51:54 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/docs has finished in 160 ms
+Apr 13, 2018 8:51:54 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/manager
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/manager has finished in 222 ms
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/examples
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/examples has finished in 511 ms
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/ROOT has finished in 170 ms
+Apr 13, 2018 8:51:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager
+Apr 13, 2018 8:51:56 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2018 8:51:56 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /CODE/DATAHUB/apache-tomcat-7.0.85/webapps/host-manager has finished in 307 ms
+Apr 13, 2018 8:51:56 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-10080"]
+Apr 13, 2018 8:51:56 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-10009"]
+Apr 13, 2018 8:51:56 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 75744 ms
